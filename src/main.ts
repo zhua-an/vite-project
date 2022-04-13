@@ -1,23 +1,32 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router';
-import store from "./store";
+import router from './router'
+import store from "./store"
 
 import ElementPlus from "element-plus"
 // import "element-plus/dist/index.css"
 import 'element-plus/theme-chalk/index.css'
 
-import "./assets/css/setting.css"
-import "./assets/css/global.css"
+import directive from './directive' // directive
 
-import { i18n } from './i18n';
+import "./assets/style/index.scss"
+
+import { i18n } from './i18n'
+import * as ElementPlusIcons from "@element-plus/icons-vue"
 
 const app = createApp(App);
+
+// elm icon图标
+Object.keys(ElementPlusIcons).forEach((iconName) => {
+    app.component(iconName, ElementPlusIcons[iconName as keyof typeof ElementPlusIcons]);
+});
 
 app.use(router);
 app.use(store);
 app.use(ElementPlus, { size: "mini" });
 app.use(i18n);
+
+directive(app)
 
 app.mount('#app')
 

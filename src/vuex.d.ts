@@ -9,6 +9,10 @@ declare module '@vue/runtime-core' {
 
     // 为 `this.$store` 提供类型声明
     interface ComponentCustomProperties {
-        $store: Store<State>
+        $store: Store<State>;
+        /**
+         * ref引用
+         */
+        $refs: any;
     }
 }

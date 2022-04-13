@@ -11,8 +11,12 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
+    "forceConsistentCasingInFileNames": true,
     "types": [
-      "node"
+      "node",
+      "vite/client",
+      "vite-plugin-pages/client",
+      "vite-plugin-vue-layouts/client"
     ],
     "paths": {
       "@/*": ["./src/*"]
@@ -25,5 +29,5 @@
     , "src/**/*.vue"
     , "build/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["dist", "node_modules", "cypress"]
 }
