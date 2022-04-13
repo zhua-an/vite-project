@@ -11,7 +11,6 @@
     "axios": "^0.26.1",
     "element-plus": "^2.1.9",
     "qs": "^6.10.3",
-    "vite-plugin-compression": "^0.5.1",
     "vue": "^3.2.29",
     "vue-i18n": "^9.2.0-beta.30",
     "vue-router": "^4.0.14",
@@ -26,6 +25,7 @@
     "unplugin-auto-import": "^0.7.0",
     "unplugin-vue-components": "^0.19.2",
     "vite": "^2.9.0",
+    "vite-plugin-compression": "^0.5.1",
     "vue-tsc": "^0.34.5"
   }
 }

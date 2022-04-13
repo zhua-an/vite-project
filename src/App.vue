@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { i18n } from "./i18n";
-import { version, buildTime } from "../build/info.json"
+import { version, buildTime } from "../vite/plugins/build/info.json"
 
 console.log(`%c Release Build Info 
 %cVersion			v${version}
