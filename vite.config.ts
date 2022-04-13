@@ -44,9 +44,6 @@ export default defineConfig(({ mode, command })=> {
       // https://cn.vitejs.dev/config/#resolve-extensions
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
     },
-    server: {
-      host: process.env.NODE_ENV !== "production"
-    },
     plugins: createVitePlugins(env, command === 'build'),
     build: {
       target: 'modules',
@@ -80,6 +77,10 @@ export default defineConfig(({ mode, command })=> {
           }
         ]
       }
-    }
+    },
+    server: {
+      host: process.env.NODE_ENV !== "production",
+      open: true, // 自动启动浏览器
+    },
   }
 })
