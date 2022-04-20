@@ -9,8 +9,6 @@ import 'element-plus/theme-chalk/index.css'
 
 import directive from './directive' // directive
 
-import "./assets/style/index.scss"
-
 import { i18n } from './i18n'
 import * as ElementPlusIcons from "@element-plus/icons-vue"
 

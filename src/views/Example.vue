@@ -43,7 +43,7 @@ let elPageSize = ref(100);
 let elCPage = ref(1);
 
 function changeLanguage() {
-    setLanguage(i18n.global.locale === "zh-cn" ? 'en' : 'zh-cn')
+    // setLanguage(i18n.global.locale === "zh-cn" ? 'en' : 'zh-cn')
 }
 
 function handleSizeChange(val: number) {

@@ -10,6 +10,7 @@ export default function createAutoImport() {
                 'vuex': ['useStore']
             }
         ],
-        dts: false
+        // dts: false
+        dts: 'src/auto-import.d.ts'
     })
 }
