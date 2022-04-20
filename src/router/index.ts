@@ -48,7 +48,7 @@ router.beforeEach((to, from, next) => {
 	const isPop = to.query.pop === "true"; //新窗口打开内页
   NProgress.start();
 	if (to.path !== "/login") {
-    if (store.state.app.routes.length) {
+    if (store.getters.routes.length) {
       if (to.name === "error") {
         const isMatched = autoRegisterDynamicToRouterAndNext(to);
         if (!isMatched) {
@@ -57,7 +57,7 @@ router.beforeEach((to, from, next) => {
         }
       } else {
         if (!to.query.pop) {
-          const routeMeta: IObject = store.state.app.routeToMeta[to.path];
+          const routeMeta: IObject = store.getters.routeToMeta[to.path];
           emits.emit(EMitt.OnPushMenuToTabs, {
             label: to.query._mt || routeMeta.title || to.path,
             value: to.fullPath,
@@ -81,7 +81,7 @@ router.beforeEach((to, from, next) => {
           store.commit("app/updateState", {
             appIsReady: true,
             routes: mergeRoute,
-            routeToMeta: { ...store.state.app.routeToMeta, ...getBaseRouteToMeta(baseRoute) }
+            routeToMeta: { ...store.getters.routeToMeta, ...getBaseRouteToMeta(baseRoute) }
           });
           setTimeout(() => {
             store.commit("app/updateState", { appIsRender: true, appIsLogin: true });

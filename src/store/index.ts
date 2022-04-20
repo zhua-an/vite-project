@@ -2,6 +2,7 @@ import Base from "@/lib/ts/Base";
 import { InjectionKey } from "vue"
 import { loadModules, context, modules } from "./modules"
 import { createStore, useStore as baseUseStore, Store, createLogger } from "vuex"
+import getters from './getters'
 
 export interface State {
     [key: string]: any
@@ -11,6 +12,7 @@ export const key: InjectionKey<Store<State>> = Symbol();
 
 const store = createStore({
     modules,
+    getters,
     strict: Base.IS_DEV,
     plugins: Base.IS_DEV ? [createLogger()] : []
 });
