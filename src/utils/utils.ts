@@ -2,6 +2,15 @@ import { IFunction, IObject } from "@/types/interface";
 import { debounce, DebouncedFunc, DebounceSettings } from "lodash";
 import type { App, Plugin } from "vue";
 
+//表单序列化
+export const serialize = (data: IObject) => {
+  let list:string[] = [];
+  Object.keys(data).forEach(ele => {
+    list.push(`${ele}=${data[ele]}`)
+  })
+  return list.join('&');
+};
+
 /**
  * 获取对象下的字段值
  * @param record {}

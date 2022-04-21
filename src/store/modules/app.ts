@@ -43,27 +43,27 @@ const store: Module<StoreApp, unknown> = {
     updateState(context, payload: AnyObject) {
       context.commit("updateState", payload);
     },
-    // initApp(ctx) {
-    //   return Promise.all([
-    //     baseService.get("/sys/menu/nav"), //加载菜单
-    //     baseService.get("/sys/menu/permissions"), //加载权限
-    //     baseService.get("/sys/user/info"), //加载用户信息
-    //     baseService.get("/sys/dict/type/all") //加载字典
-    //   ]).then(([menus, permissions, user, dicts]) => {
-    //     if (user.code !== 0) {
-    //       console.error("初始化用户数据错误", user.msg);
-    //     }
-    //     const [routes, routeToMeta] = mergeServerRoute(menus.data || [], getSysRouteMap());
-    //     ctx.commit("updateState", {
-    //       permissions: permissions.data || [],
-    //       user: user.data || {},
-    //       dicts: dicts.data || [],
-    //       routeToMeta: routeToMeta || {},
-    //       menus: []
-    //     });
-    //     return routes;
-    //   });
-    // }
+    initApp(ctx) {
+      // return Promise.all([
+      //   baseService.get("/sys/menu/nav"), //加载菜单
+      //   baseService.get("/sys/menu/permissions"), //加载权限
+      //   baseService.get("/sys/user/info"), //加载用户信息
+      //   baseService.get("/sys/dict/type/all") //加载字典
+      // ]).then(([menus, permissions, user, dicts]) => {
+      //   if (user.code !== 0) {
+      //     console.error("初始化用户数据错误", user.msg);
+      //   }
+      //   const [routes, routeToMeta] = mergeServerRoute(menus.data || [], getSysRouteMap());
+      //   ctx.commit("updateState", {
+      //     permissions: permissions.data || [],
+      //     user: user.data || {},
+      //     dicts: dicts.data || [],
+      //     routeToMeta: routeToMeta || {},
+      //     menus: []
+      //   });
+      //   return routes;
+      // });
+    }
   },
   getters: {
    

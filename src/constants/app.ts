@@ -15,6 +15,16 @@ export default {
   defaultLang: "zh-CN",
 
   /**
+   * token 前缀
+   */
+  Authorization: 'Authorization',
+
+  /**
+   * http的status默认放行不才用统一处理的
+   */
+  statusWhiteList: [400],
+
+  /**
    * api请求地址，这里读取env环境变量中的VITE_APP_API，优先使用全局变量window.SITE_CONFIG.apiURL钩子，支持在index.html中配置
    */
   api: getValueByKeys(window, "SITE_CONFIG.apiURL") || import.meta.env.VITE_APP_API,

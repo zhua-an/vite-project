@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from "./store"
+import store from './store'
 
 import ElementPlus from "element-plus"
 // import "element-plus/dist/index.css"
@@ -18,6 +18,9 @@ const app = createApp(App);
 Object.keys(ElementPlusIcons).forEach((iconName) => {
     app.component(iconName, ElementPlusIcons[iconName as keyof typeof ElementPlusIcons]);
 });
+
+//配置全局属性
+// app.config.globalProperties
 
 app.use(router);
 app.use(store);
