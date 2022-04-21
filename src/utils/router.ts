@@ -2,7 +2,7 @@ import app from "@/constants/app";
 import Layout from "@/layouts/index.vue";
 import { toSysViewComponentPath } from "@/router";
 import { IObject, IServerMenus } from "@/types/interface";
-import Iframe from "@/views/iframe.vue";
+import Iframe from "@/layouts/iframe.vue";
 import { Router, RouteRecordNormalized, RouteRecordRaw } from "vue-router";
 import { getValueByKeys, isExternalLink } from "./utils";
 

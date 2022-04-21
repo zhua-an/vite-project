@@ -70,7 +70,7 @@ router.beforeEach((to, from, next) => {
     } else {
       if (token) {
         //初始化数据
-        store.dispatch({ type: "initApp" }).then((res: Array<RouteRecordRaw>) => {
+        store.dispatch({ type: "app/initApp" }).then((res: Array<RouteRecordRaw>) => {
           const baseRoute = toLangRoutes(getRoutes(), i18n.global.t);
           const mergeRoute = baseRoute.concat(res);
           router.options.routes = mergeRoute;

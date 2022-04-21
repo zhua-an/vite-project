@@ -1,4 +1,8 @@
 import { Module } from "vuex";
+import { setCache } from "@/utils/cache";
+import { CacheToken } from "@/constants/cacheKey";
+import { ElMessage } from "element-plus";
+import { i18nt } from '@/i18n';
 
 interface StoreUser {
   permissions: [], //权限集合
@@ -36,6 +40,14 @@ const store: Module<StoreUser, unknown> = {
     }
   },
   actions: {
+    LoginByUsername({ commit }, userInfo = {}) {
+      ElMessage.success(i18nt("ui.login.loginOk"));
+      setCache(CacheToken, {"token":"zhua"}, true);
+    },
+    LoginByPhone({ commit }, userInfo = {}) {
+      ElMessage.success(i18nt("ui.login.loginOk"));
+      setCache(CacheToken, {"token":"zhua"}, true);
+    },
     setText(context, payload: AnyObject) {
       context.commit("setText", payload);
     }

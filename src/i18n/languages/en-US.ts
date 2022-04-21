@@ -2,6 +2,23 @@ import enLocale from "element-plus/lib/locale/lang/en"
 
 export const lang = {
 	langName: "English",
+  login: {
+    title: 'Login ',
+    info: 'Rapid Development Framework of General Management System',
+    username: 'Please input username',
+    password: 'Please input a password',
+    wechat: 'Wechat',
+    qq: 'QQ',
+    phone: 'Please input a phone',
+    code: 'Please input a code',
+    submit: 'Login',
+    userLogin: 'userLogin',
+    phoneLogin: 'phoneLogin',
+    thirdLogin: 'thirdLogin',
+    faceLogin: 'faceLogin',
+    msgText: 'send code',
+    msgSuccess: 'reissued code',
+  },
 	ui: {
     app: {
       //产品信息

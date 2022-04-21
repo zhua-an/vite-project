@@ -1,4 +1,5 @@
 import { Module } from "vuex";
+import { getLocaleLang } from "../../i18n";
 
 interface StoreApp {
   appIsLogin: boolean, //是否登录
@@ -11,6 +12,7 @@ interface StoreApp {
   tabs: [], //tab标签页集合
   activeTabName: "", //tab当前焦点页
   closedTabs: [] //存储已经关闭过的tab
+  language: string
 }
 
 const store: Module<StoreApp, unknown> = {
@@ -26,7 +28,8 @@ const store: Module<StoreApp, unknown> = {
       routeToMeta: {}, //url对应标题meta信息
       tabs: [], //tab标签页集合
       activeTabName: "", //tab当前焦点页
-      closedTabs: [] //存储已经关闭过的tab
+      closedTabs: [], //存储已经关闭过的tab
+      language: getLocaleLang()
     }
   },
   mutations: {

@@ -2,6 +2,23 @@ import zhLocale from "element-plus/lib/locale/lang/zh-cn";
 
 export const lang = {
     langName: "简体中文",
+		login: {
+			title: '登录 ',
+			info: '通用管理系统快速开发框架',
+			username: '请输入账号',
+			password: '请输入密码',
+			wechat: '微信',
+			qq: 'QQ',
+			phone: '请输入手机号',
+			code: '请输入验证码',
+			submit: '登录',
+			faceLogin: '刷脸登录',
+			userLogin: '账号密码',
+			phoneLogin: '手机号登录',
+			thirdLogin: '第三方登录',
+			msgText: '发送验证码',
+			msgSuccess: '秒后重发',
+		},
     ui: {
 			app: {
 				//产品信息
