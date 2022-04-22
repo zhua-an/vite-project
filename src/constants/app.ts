@@ -20,6 +20,16 @@ export default {
   Authorization: 'Authorization',
 
   /**
+   * 用户名密码登录的 client 信息
+   */
+  formLoginClient: 'zhua:zhua',
+
+  /**
+   * 验证码登录的 client 信息
+   */
+  smsLoginClient: 'app:app',
+
+  /**
    * http的status默认放行不才用统一处理的
    */
   statusWhiteList: [400],

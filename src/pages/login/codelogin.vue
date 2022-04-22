@@ -9,7 +9,7 @@
       <el-input @keyup.enter="handleLogin(loginFormRef)"
                 v-model="loginForm.phone"
                 auto-complete="off"
-                :placeholder="$t('login.phone')">
+                :placeholder="$t('ui.login.phone')">
         <template #prefix>
           <el-icon class="el-input__icon"><Cellphone /></el-icon>
         </template>
@@ -19,7 +19,7 @@
       <el-input @keyup.enter="handleLogin(loginFormRef)"
                 v-model="loginForm.code"
                 auto-complete="off"
-                :placeholder="$t('login.code')">
+                :placeholder="$t('ui.login.code')">
         <template #prefix>
           <el-icon class="el-input__icon"><lock /></el-icon>
         </template>
@@ -34,7 +34,7 @@
     <el-form-item>
       <el-button type="primary" :disabled="loading"
                  @click.prevent="handleLogin(loginFormRef)"
-                 class="login-submit">{{$t('login.submit')}}</el-button>
+                 class="login-submit">{{$t('ui.login.submit')}}</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -58,14 +58,14 @@ const msgKey = ref(false)
 const loading = ref(false)
 const validatePhone = (rule: any, value: any, callback: any) => {
   if (value || !isMobile(value)) {
-    callback(new Error("请输入正确的手机号"));
+    callback(new Error(t("ui.login.rules.phone")));
   } else {
     callback();
   }
 };
 const validateCode = (rule: any, value: any, callback: any) => {
   if (value.length != 4) {
-    callback(new Error("请输入4位数的验证码"));
+    callback(new Error(t("ui.login.rules.captcha4")));
   } else {
     callback();
   }
@@ -83,8 +83,8 @@ onMounted(() => {
 
 const config = computed(() => {
   return {
-    MSGINIT: t("login.msgText"),
-    MSGSCUCCESS: t("login.msgSuccess"),
+    MSGINIT: t("ui.login.msgText"),
+    MSGSCUCCESS: t("ui.login.msgSuccess"),
     MSGTIME: 60
   }
 })

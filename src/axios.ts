@@ -32,17 +32,19 @@ axios.defaults.baseURL = app.api
 
 //HTTPrequest拦截
 axios.interceptors.request.use((config: AxiosRequestConfig) => {
-NProgress.start() // start progress bar
-if (config && config.headers) {
-  config.headers["X-Requested-With"] = "XMLHttpRequest";
-  config.headers["Request-Start"] = new Date().getTime();
-  if (getToken()) {
-    config.headers[app.Authorization] = 'Bearer ' + getToken() // 让每个请求携带token--['Authorization']为自定义key 请根据实际情况自行修改
+  NProgress.start() // start progress bar
+  if (config && config.headers) {
+    config.headers["X-Requested-With"] = "XMLHttpRequest";
+    config.headers["Request-Start"] = new Date().getTime();
+    const isToken = (config.headers || {}).isToken === false;
+    let token = getToken()
+    if (token && !isToken) {
+      config.headers[app.Authorization] = 'Bearer ' + token // 让每个请求携带token--['Authorization']为自定义key 请根据实际情况自行修改
+    }
   }
-}
   
   //headers中配置serialize为true开启序列化
-  if (config.method === 'post') {
+  if (config.method === 'post' && config.headers && config.headers["serialize"] === true) {
     config.data = serialize(config.data);
   }
   if (config.method?.toUpperCase() === "GET") {
@@ -64,7 +66,7 @@ axios.interceptors.response.use((res:AxiosResponse) => {
   //如果在白名单里则自行catch逻辑处理
   if (statusWhiteList.includes(status)) return Promise.reject(res);
   //如果是401则跳转到登录页面
-  if (status === 401) store.dispatch('FedLogOut').then(() => router.push({ path: '/login' }));
+  if (status === 401) store.dispatch('LogOut').then(() => router.push({ path: '/login' }));
   // 如果请求为非200否者默认统一处理
   if (status !== 200) {
     ElMessage({

@@ -9,9 +9,9 @@
       <el-input @keyup.enter="handleLogin(loginFormRef)"
                 v-model="loginForm.username"
                 auto-complete="off"
-                :placeholder="$t('login.username')">
+                :placeholder="$t('ui.login.username')">
         <template #prefix>
-          <el-icon class="el-input__icon"><user /></el-icon>
+          <el-icon class="el-input__icon"><User /></el-icon>
         </template>
       </el-input>
     </el-form-item>
@@ -20,9 +20,12 @@
                 :type="passwordType"
                 v-model="loginForm.password"
                 auto-complete="off"
-                :placeholder="$t('login.password')">
+                :placeholder="$t('ui.login.password')">
         <template #prefix>
-          <el-icon class="el-input__icon"><lock /></el-icon>
+          <el-icon class="el-input__icon"><Lock /></el-icon>
+        </template>
+        <template #suffix>
+          <el-icon class="el-input__icon" @click="showPassword"><View /></el-icon>
         </template>
       </el-input>
     </el-form-item>
@@ -31,7 +34,7 @@
                 :maxlength="code.len"
                 v-model="loginForm.code"
                 auto-complete="off"
-                :placeholder="$t('login.code')">
+                :placeholder="$t('ui.login.code')">
         <template #prefix>
           <i class="icon-yanzhengma"></i>
         </template>
@@ -52,7 +55,7 @@
     <el-form-item>
       <el-button type="primary" :disabled="loading"
                  @click.prevent="handleLogin(loginFormRef)"
-                 class="login-submit">{{$t('login.submit')}}</el-button>
+                 class="login-submit">{{$t('ui.login.submit')}}</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -63,6 +66,8 @@
 
 <script setup lang="ts">
 import type { FormInstance, FormRules } from 'element-plus'
+import { ElMessage } from "element-plus";
+import { i18nt } from '@/i18n';
 
 const router = useRouter()
 const store = useStore()
@@ -85,22 +90,22 @@ const validateCode = (rule: any, value: any, callback: any) => {
   if (code.value != value) {
     loginForm.code = "";
     refreshCode();
-    callback(new Error("请输入正确的验证码"));
+    callback(new Error(i18nt("ui.login.rules.captcha")));
   } else {
     callback();
   }
 };
 const loginRules = reactive<FormRules>({
   username: [
-    { required: true, message: "请输入用户名", trigger: "blur" }
+    { required: true, message: i18nt("ui.login.rules.userName"), trigger: "blur" }
   ],
   password: [
-    { required: true, message: "请输入密码", trigger: "blur" },
-    { min: 6, message: "密码长度最少为6位", trigger: "blur" }
+    { required: true, message: i18nt("ui.login.rules.password"), trigger: "blur" },
+    { min: 6, message: i18nt("ui.login.rules.password6"), trigger: "blur" }
   ],
   code: [
-    { required: true, message: "请输入验证码", trigger: "blur" },
-    { min: 4, max: 4, message: "验证码长度为4位", trigger: "blur" },
+    { required: true, message: i18nt("ui.login.rules.captcha"), trigger: "blur" },
+    { min: 4, max: 4, message: i18nt("ui.login.rules.captcha4"), trigger: "blur" },
     { required: true, trigger: "blur", validator: validateCode }
   ]
 })
@@ -126,6 +131,7 @@ const handleLogin = (formEl: FormInstance | undefined) => {
       loading.value = true
       console.log('submit!')
       store.dispatch("user/LoginByUsername", loginForm).then(() => {
+        ElMessage.success(i18nt("ui.login.loginOk"));
         router.push("/");
         loading.value = false
       }).catch(() => {

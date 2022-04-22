@@ -2,29 +2,12 @@ import zhLocale from "element-plus/lib/locale/lang/zh-cn";
 
 export const lang = {
     langName: "简体中文",
-		login: {
-			title: '登录 ',
-			info: '通用管理系统快速开发框架',
-			username: '请输入账号',
-			password: '请输入密码',
-			wechat: '微信',
-			qq: 'QQ',
-			phone: '请输入手机号',
-			code: '请输入验证码',
-			submit: '登录',
-			faceLogin: '刷脸登录',
-			userLogin: '账号密码',
-			phoneLogin: '手机号登录',
-			thirdLogin: '第三方登录',
-			msgText: '发送验证码',
-			msgSuccess: '秒后重发',
-		},
     ui: {
 			app: {
 				//产品信息
-				name: "人人开源",
-				productName: "人人权限企业版",
-				productNameMini: "人人",
+				name: "通用管理系统",
+				productName: "通用管理系统快速开发框架",
+				productNameMini: "通用",
 				copyright: "renren.io"
 			},
 			setting: {
@@ -122,19 +105,31 @@ export const lang = {
 				selectTips: "请选择"
 			},
 			login: {
-				// 登录页
+				title: '登录 ',
+				info: '通用管理系统快速开发框架',
+				username: '请输入账号',
+				password: '请输入密码',
+				wechat: '微信',
+				qq: 'QQ',
+				phone: '请输入手机号',
+				code: '请输入验证码',
+				submit: '登录',
+				faceLogin: '刷脸登录',
+				userLogin: '账号密码',
+				phoneLogin: '手机号登录',
+				thirdLogin: '第三方登录',
+				msgText: '发送验证码',
+				msgSuccess: '秒后重发',
 				loginOk: "登录成功",
-				userNamePlaceholder: "用户名",
-				passwordPlaceholder: "密码",
-				captchaPlaceholder: "验证码",
-				remember: "记住密码",
-				loginBtn: "登录",
 				rules: {
+					phone: "必填项不能为空",
 					userName: "必填项不能为空",
 					password: "必填项不能为空",
-					captcha: "必填项不能为空"
+					password6: "密码长度最少为6位",
+					captcha: "请输入正确的验证码",
+					captcha4: "验证码长度为4位"
 				}
-			}
+			},
     },
     el: zhLocale.el
 }

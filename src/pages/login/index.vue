@@ -5,20 +5,20 @@
         <img class="img"
              src="@/assets/logo.png"
              alt="">
-        <p class="title">{{ $t('login.info') }}</p>
+        <p class="title">{{ $t('ui.login.info') }}</p>
       </div>
       <div class="login-border animate__animated animate__fadeInRight">
         <div class="login-main">
           <p class="login-title">
-            {{ $t('login.title') }}{{ $t('ui.app.productName') }}
+            {{ $t('ui.login.title') }}{{ $t('ui.login.info') }}
           </p>
           <userLogin v-if="activeName==='user'"></userLogin>
           <codeLogin v-else-if="activeName==='code'"></codeLogin>
           <div class="login-menu">
             <a href="#"
-               @click.stop="activeName='user'">{{ $t('login.userLogin') }}</a>
+               @click.stop="activeName='user'">{{ $t('ui.login.userLogin') }}</a>
             <a href="#"
-               @click.stop="activeName='code'">{{ $t('login.phoneLogin') }}</a>
+               @click.stop="activeName='code'">{{ $t('ui.login.phoneLogin') }}</a>
           </div>
         </div>
       </div>

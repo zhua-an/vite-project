@@ -1,19 +1,22 @@
 import { Module } from "vuex";
-import { setCache } from "@/utils/cache";
+import { setCache, getCache } from "@/utils/cache";
+import { encryption } from '@/utils/utils'
 import { CacheToken } from "@/constants/cacheKey";
-import { ElMessage } from "element-plus";
-import { i18nt } from '@/i18n';
+import { loginByUsername,loginByMobile } from '@/api/user/user'
 
 interface StoreUser {
+  access_token: string, //access_token
+  refresh_token: string, //refresh_token
   permissions: [], //权限集合
   info: Object, //用户信息
-  text: string
 }
 
 const store: Module<StoreUser, unknown> = {
   namespaced: true,
   state() {
     return {
+      access_token: getCache('access_token') || '',
+      refresh_token: getCache('refresh_token') || '',
       permissions: [],
       info: {
         createDate: "",
@@ -30,31 +33,54 @@ const store: Module<StoreUser, unknown> = {
         status: 0,
         superAdmin: 0,
         username: ""
-      },
-      text: "未修改"
+      }
     }
   },
   mutations: {
-    setText(state: StoreUser, payload: AnyObject) {
-      state.text = payload.text;
+    SET_ACCESS_TOKEN: (state: StoreUser, access_token: string) => {
+      state.access_token = access_token
+      setCache(CacheToken, {"access_token":access_token}, true)
+    },
+    SET_REFRESH_TOKEN: (state: StoreUser, rfToken: string) => {
+      state.refresh_token = rfToken
+      setCache('refresh_token', state.refresh_token, true)
     }
   },
   actions: {
     LoginByUsername({ commit }, userInfo = {}) {
-      ElMessage.success(i18nt("ui.login.loginOk"));
-      setCache(CacheToken, {"token":"zhua"}, true);
+      const user = encryption({
+        data: userInfo,
+        key: 'thanks,helloworld',
+        param: ['password']
+      })
+      return new Promise((resolve, reject) => {
+        loginByUsername(user.username, user.password, user.code, user.randomStr).then(response => {
+          const data = response.data
+          commit('SET_ACCESS_TOKEN', data.access_token)
+          commit('SET_REFRESH_TOKEN', data.refresh_token)
+          resolve(data)
+        }).catch(error => {
+          reject(error)
+        })
+      })
     },
-    LoginByPhone({ commit }, userInfo = {}) {
-      ElMessage.success(i18nt("ui.login.loginOk"));
-      setCache(CacheToken, {"token":"zhua"}, true);
+    // 根据手机号登录
+    LoginByPhone({commit}, userInfo) {
+      return new Promise((resolve, reject) => {
+        loginByMobile(userInfo.mobile, userInfo.code).then(response => {
+          const data = response.data
+          commit('SET_ACCESS_TOKEN', data.access_token)
+          commit('SET_REFRESH_TOKEN', data.refresh_token)
+          resolve(data)
+        }).catch(error => {
+          reject(error)
+        })
+      })
     },
-    setText(context, payload: AnyObject) {
-      context.commit("setText", payload);
-    }
   },
   getters: {
-    getText(state: StoreUser) {
-      return state.text
+    getInfo(state: StoreUser) {
+      return state.info
     }
   }
 }

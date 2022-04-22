@@ -1,5 +1,6 @@
 import { Module } from "vuex";
 import { getLocaleLang } from "../../i18n";
+import {  } from '@/api/app/app'
 
 interface StoreApp {
   appIsLogin: boolean, //是否登录

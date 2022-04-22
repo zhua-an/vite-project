@@ -2,29 +2,12 @@ import enLocale from "element-plus/lib/locale/lang/en"
 
 export const lang = {
 	langName: "English",
-  login: {
-    title: 'Login ',
-    info: 'Rapid Development Framework of General Management System',
-    username: 'Please input username',
-    password: 'Please input a password',
-    wechat: 'Wechat',
-    qq: 'QQ',
-    phone: 'Please input a phone',
-    code: 'Please input a code',
-    submit: 'Login',
-    userLogin: 'userLogin',
-    phoneLogin: 'phoneLogin',
-    thirdLogin: 'thirdLogin',
-    faceLogin: 'faceLogin',
-    msgText: 'send code',
-    msgSuccess: 'reissued code',
-  },
 	ui: {
     app: {
       //产品信息
-      name: "Renren",
-      productName: "RENREN SECURITY",
-      productNameMini: "RR",
+      name: "通用管理系统快速开发框架",
+      productName: "Rapid Development Framework of General Management System",
+      productNameMini: "Currency",
       copyright: "renren.io"
     },
     setting: {
@@ -122,19 +105,31 @@ export const lang = {
       selectTips: "Please choose"
     },
     login: {
-      // 登录页
+      title: 'Login ',
+      info: 'Rapid Development Framework of General Management System',
+      username: 'Please input username',
+      password: 'Please input a password',
+      wechat: 'Wechat',
+      qq: 'QQ',
+      phone: 'Please input a phone',
+      code: 'Please input a code',
+      submit: 'Login',
+      userLogin: 'userLogin',
+      phoneLogin: 'phoneLogin',
+      thirdLogin: 'thirdLogin',
+      faceLogin: 'faceLogin',
+      msgText: 'send code',
+      msgSuccess: 'reissued code',
       loginOk: "Login successful",
-      userNamePlaceholder: "Username",
-      passwordPlaceholder: "Password",
-      captchaPlaceholder: "Verification Code",
-      remember: "Remember password",
-      loginBtn: "Sign in",
       rules: {
+        phone: "Required field cannot be empty",
         userName: "Required field cannot be empty",
         password: "Required field cannot be empty",
-        captcha: "Required field cannot be empty"
+        password6: "The password must be at least 6 digits long",
+        captcha: "Please enter the correct verification code",
+        captcha4: "The verification code is 4 digits long"
       }
-    }
+    },
   },
 	el: enLocale.el
 }
