@@ -20,12 +20,9 @@
                 :type="passwordType"
                 v-model="loginForm.password"
                 auto-complete="off"
-                :placeholder="$t('ui.login.password')">
+                :placeholder="$t('ui.login.password')" show-password>
         <template #prefix>
           <el-icon class="el-input__icon"><Lock /></el-icon>
-        </template>
-        <template #suffix>
-          <el-icon class="el-input__icon" @click="showPassword"><View /></el-icon>
         </template>
       </el-input>
     </el-form-item>
@@ -115,13 +112,7 @@ const refreshCode = () => {
   code.type == "text"
         ? (code.value = '2345')
         : (code.src = `/${loginForm.redomStr}`);
-      loginForm.code = code.value;
-}
-
-const showPassword = () => {
-  passwordType.value == ""
-        ? (passwordType.value = "password")
-        : (passwordType.value = "");
+  loginForm.code = code.value;
 }
 
 const handleLogin = (formEl: FormInstance | undefined) => {
@@ -129,13 +120,14 @@ const handleLogin = (formEl: FormInstance | undefined) => {
   formEl.validate((valid) => {
     if (valid) {
       loading.value = true
-      console.log('submit!')
       store.dispatch("user/LoginByUsername", loginForm).then(() => {
         ElMessage.success(i18nt("ui.login.loginOk"));
         router.push("/");
         loading.value = false
-      }).catch(() => {
+      }).catch((error) => {
         loading.value = false
+        console.log(error)
+        ElMessage.error('未知错误');
       })
     } else {
       console.log('error submit!')

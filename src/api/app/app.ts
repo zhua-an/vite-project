@@ -1,4 +1,11 @@
 import request from '@/axios'
-import qs from 'qs'
-import app from '@/constants/app'
+import { IHttpResponse } from "@/types/interface"
 
+
+
+export const getDict = (): Promise<IHttpResponse> => {
+  return request({
+    url: '/sys/dict/type/all',
+    method: 'get'
+  })
+}

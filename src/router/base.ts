@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from "vue-router";
-import Layout from "@/layouts/index.vue";
+import Layout from "@/layouts/default.vue";
 
 /**
  * 框架基础路由

@@ -4,12 +4,13 @@ import router from './router'
 import store from './store'
 
 import ElementPlus from "element-plus"
-// import "element-plus/dist/index.css"
 import 'element-plus/theme-chalk/index.css'
 
 import directive from './directive' // directive
 
 import { i18n } from './i18n'
+// 引入vite-plugin-svg-icons
+import 'virtual:svg-icons-register'
 import * as ElementPlusIcons from "@element-plus/icons-vue"
 
 const app = createApp(App);

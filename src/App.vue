@@ -18,7 +18,7 @@ import { getLocaleLang, supportLangs } from "./i18n";
 import { IObject } from "./types/interface";
 import { EPageLayoutEnum, EThemeColor, EThemeSetting } from "./constants/enum";
 import { getThemeConfigCache, setThemeColor, updateTheme } from "./utils/theme";
-import Layout from "@/layouts/index.vue";
+import Layout from "@/layouts/default.vue";
 import FullscreenLayout from "@/layouts/fullscreen-layout.vue";
 
 export default defineComponent({

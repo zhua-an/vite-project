@@ -1,7 +1,6 @@
 <template>
-    <div>About {{ test }}</div>
+    <div>About</div>
     <el-icon :size="20">
-    <edit />
   </el-icon>
 </template>
 

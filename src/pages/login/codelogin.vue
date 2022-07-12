@@ -42,6 +42,8 @@
 <script lang="ts" setup>
 import type { FormInstance, FormRules } from 'element-plus'
 import { isMobile } from '@/utils/utils'
+import { ElMessage } from "element-plus"
+import { i18nt } from '@/i18n'
 
 const { t } = useI18n();
 const router = useRouter()
@@ -110,12 +112,14 @@ const handleLogin = (formEl: FormInstance | undefined) => {
   formEl.validate((valid) => {
     if (valid) {
       loading.value = true
-      console.log('submit!')
       store.dispatch("user/LoginByPhone", loginForm).then(() => {
+        ElMessage.success(i18nt("ui.login.loginOk"));
         router.push("/");
         loading.value = false
-      }).catch(() => {
+      }).catch((error) => {
         loading.value = false
+        console.log(error)
+        ElMessage.error('未知错误');
       })
     } else {
       console.log('error submit!')

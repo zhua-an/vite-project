@@ -28,7 +28,6 @@
 </style>
 
 <script setup lang="ts">
-import Base from '@/lib/ts/Base'
 import { computed, ref } from "vue";
 import { useStore } from '@/store';
 import { i18n, setLanguage } from '@/i18n';
@@ -62,47 +61,8 @@ let timer1 = setTimeout(() => {
     refText.value = "已修改";
     reactiveText.value.text = "已修改";
     st.dispatch("user/setText", { text: "已修改" }, {root: true})
-    // 存 Cookie
-    Base.Cookie.set("test", "已修改", 60*60*24);
-    // 存 localStorage
-    Base.Storage.set("test", "已修改");
     clearTimeout(timer1)
 }, 5000);
 
-// Base.NetBase.create({}) 等同于 new Base.NetBase({})
-// 网络请求示例 1
-const api1 = Base.NetBase.create({
-    baseUrl: "./"
-})
 
-api1.get("api.json", {
-    _success: (res: {text: string}) => {
-        let timer2 = setTimeout(() => {
-            api1Text.value.text = res.text;
-            clearTimeout(timer2);
-        }, 5000);
-    }
-})
-
-// 网络请求示例 2
-const api2 = Base.NetBase.create({
-    baseUrl: "./"
-})
-
-api2.get<{text: string}>("api.json")
-    .then(res => {
-        let timer2 = setTimeout(() => {
-            api2Text.value.text = res.text;
-            clearTimeout(timer2);
-        }, 5000);
-    })
-
-// 网络请求示例 3
-Base.NetBase.sget<{text: string}>("./api.json")
-    .then(res => {
-        let timer3 = setTimeout(() => {
-            api3Text.value.text = res.text;
-            clearTimeout(timer3);
-        }, 5000);
-    })
 </script>

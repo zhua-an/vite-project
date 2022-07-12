@@ -14,6 +14,9 @@ export function getPages() {
     main: resolve(__dirname, 'index.html')
   };
   for (let i = 0; i < files.length; i++) {
+    if(!files[i].endsWith('.html')) {
+      continue
+    }
     let key = files[i].replace('.html', '');
     if (key === 'index') continue;
     pages[key] = resolve(__dirname, `src/pages/${files[i]}`);
@@ -57,9 +60,10 @@ export default defineConfig(({ mode, command })=> {
           drop_debugger: true
         }
       },
-      rollupOptions: {
-        input: getPages(),
-      }
+      // 多入口文件 通过vite-plugin-html配置
+      // rollupOptions: {
+      //   input: getPages(),
+      // }
     },
     //warning: "@charset" must be the first rule in the file
     css: {

@@ -11,6 +11,9 @@
         <div class="login-main">
           <p class="login-title">
             {{ $t('ui.login.title') }}{{ $t('ui.login.info') }}
+            <lang>
+              <svg-icon name="fanyiline"></svg-icon>
+            </lang>
           </p>
           <userLogin v-if="activeName==='user'"></userLogin>
           <codeLogin v-else-if="activeName==='code'"></codeLogin>
@@ -162,21 +165,18 @@ const activeName = ref('user')
     width: 100%;
   }
   .el-form-item {
-    margin-bottom: 12px;
+    margin-bottom: 18px;
   }
   .el-input {
     input {
       padding:20px 0 20px 40px;
       text-indent: 5px;
-      border-radius: 0;
+      border-radius: 5;
     }
     .el-input__suffix,.el-input__prefix{
       display: flex;
       align-items: center;
       text-align: center;
-    }
-    .el-input__prefix{
-      margin-left: 8px;
     }
   }
 }

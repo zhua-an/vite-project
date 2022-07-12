@@ -20,7 +20,7 @@ interface dynamicRouteParams {
 
 NProgress.configure({ showSpinner: false });
 
-function getRoutes() {
+function getRoutes(): RouteRecordRaw[] {
 	/**
 	 * 如果要对 routes 做一些处理，请在这里修改
 	 */
@@ -28,9 +28,11 @@ function getRoutes() {
 	return routes.concat(baseRoutes).concat(errorRoute);
 }
 
+const routes: RouteRecordRaw[] = getRoutes()
+
 const router = createRouter({
 	history: createWebHashHistory(),
-	routes: getRoutes()
+	routes: routes
 })
 
 // 路由加载前
@@ -56,7 +58,7 @@ router.beforeEach((to, from, next) => {
           next();
         }
       } else {
-        if (!to.query.pop) {
+        if (!to.query.pop) {//打开新tab页签
           const routeMeta: IObject = store.getters.routeToMeta[to.path];
           emits.emit(EMitt.OnPushMenuToTabs, {
             label: to.query._mt || routeMeta.title || to.path,
@@ -71,7 +73,7 @@ router.beforeEach((to, from, next) => {
       if (token) {
         //初始化数据
         store.dispatch({ type: "app/initApp" }).then((res: Array<RouteRecordRaw>) => {
-          const baseRoute = toLangRoutes(getRoutes(), i18n.global.t);
+          const baseRoute = toLangRoutes(routes, i18n.global.t);
           const mergeRoute = baseRoute.concat(res);
           router.options.routes = mergeRoute;
           registerToRouter(router, mergeRoute);
